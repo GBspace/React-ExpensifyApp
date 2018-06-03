@@ -12,7 +12,7 @@ module.exports = (env)=>{
         entry: './src/app.js',
         output: {
             filename: 'bundle.js',
-            path: path.join(__dirname,'public')
+            path: path.join(__dirname,'public','dist')
         },
     
         module: {
@@ -45,8 +45,9 @@ module.exports = (env)=>{
         ],
         devtool: isProduction ? 'source-map' : 'inline-source-map',
         devServer: {
-            contentBase: path.join(__dirname,'public'), //provide the public assets
-            historyApiFallback: true  //tell the dev server that routing will be handled by client code
+            contentBase: path.join(__dirname,'public','dist'), //provide the public assets
+            historyApiFallback: true,  //tell the dev server that routing will be handled by client code
+            publicPath: '/dist/'
         }
     };
 };
