@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install webpack@4.4.1
+  C:\Program Files\nodejs\node.exe C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run dev-server
 
 PATH: 
-  C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\WebEx\Productivity Tools;C:\Program Files (x86)\Cisco\OSD-ShellApplications;C:\Program Files (x86)\PuTTY\;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Sennheiser\SoftphoneSDK\;C:\Program Files\nodejs\;C:\Users\garimjai\AppData\Local\Microsoft\WindowsApps;C:\Users\garimjai\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Users\garimjai\AppData\Local\GitHubDesktop\bin
+  C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\WebEx\Productivity Tools;C:\Program Files (x86)\Cisco\OSD-ShellApplications;C:\Program Files (x86)\PuTTY\;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Sennheiser\SoftphoneSDK\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\garimjai\AppData\Local\Microsoft\WindowsApps;C:\Users\garimjai\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Users\garimjai\AppData\Local\GitHubDesktop\bin;C:\Program Files\heroku\bin
 
 Yarn version: 
   1.5.1
@@ -21,11 +21,12 @@ npm manifest:
     "author": "Garima Jain",
     "license": "MIT",
     "scripts": {
-      "serve": "live-server public/",
       "build:dev": "webpack",
       "build:prod": "webpack -p --env production",
       "dev-server": "webpack-dev-server --mode development",
-      "test": "jest --config=jest.config.json"
+      "test": "jest --config=jest.config.json",
+      "start": "node server/server.js",
+      "heroku-postbuild": "yarn run build:prod"
     },
     "dependencies": {
       "babel-cli": "^6.24.1",
@@ -35,12 +36,8 @@ npm manifest:
       "babel-preset-env": "^1.5.2",
       "babel-preset-react": "^6.24.1",
       "css-loader": "^0.28.11",
-      "enzyme": "3.0.0",
-      "enzyme-adapter-react-16": "1.0.0",
-      "enzyme-to-json": "^3.3.4",
+      "express": "^4.16.3",
       "extract-text-webpack-plugin": "^3.0.2",
-      "jest": "^23.0.0",
-      "live-server": "^1.2.0",
       "mini-css-extract-plugin": "^0.4.0",
       "moment": "2.22.1",
       "node-sass": "^4.9.0",
@@ -52,18 +49,23 @@ npm manifest:
       "react-modal": "^3.4.4",
       "react-redux": "^5.0.7",
       "react-router-dom": "^4.2.2",
-      "react-test-renderer": "^16.4.0",
       "redux": "^4.0.0",
       "sass-loader": "^7.0.1",
       "style-loader": "^0.21.0",
       "uuid": "^3.2.1",
       "validator": "^10.2.0",
-      "webpack": "4.4.1",
-      "webpack-dev-server": "^3.1.4"
+      "webpack": "4.4.1"
     },
     "devDependencies": {
       "babel-plugin-transform-class-properties": "^6.24.1",
-      "webpack-cli": "^2.1.3"
+      "webpack-cli": "^2.1.3",
+      "enzyme": "3.0.0",
+      "enzyme-adapter-react-16": "1.0.0",
+      "enzyme-to-json": "^3.3.4",
+      "jest": "^23.0.0",
+      "live-server": "^1.2.0",
+      "react-test-renderer": "^16.4.0",
+      "webpack-dev-server": "^3.1.4"
     }
   }
 
@@ -2840,7 +2842,7 @@ Lockfile:
       jest-message-util "^23.0.0"
       jest-regex-util "^23.0.0"
   
-  express@^4.16.2:
+  express@^4.16.2, express@^4.16.3:
     version "4.16.3"
     resolved "https://registry.yarnpkg.com/express/-/express-4.16.3.tgz#6af8a502350db3246ecc4becf6b5a34d22f7ed53"
     dependencies:
@@ -7984,7 +7986,7 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
   
-  uglifyjs-webpack-plugin@^1.1.1:
+  uglifyjs-webpack-plugin@^1.2.4:
     version "1.2.5"
     resolved "https://registry.yarnpkg.com/uglifyjs-webpack-plugin/-/uglifyjs-webpack-plugin-1.2.5.tgz#2ef8387c8f1a903ec5e44fa36f9f3cbdcea67641"
     dependencies:
@@ -8255,7 +8257,7 @@ Lockfile:
       exec-sh "^0.2.0"
       minimist "^1.2.0"
   
-  watchpack@^1.4.0:
+  watchpack@^1.5.0:
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.6.0.tgz#4bc12c2ebe8aa277a71f1d3f14d685c7b446cd00"
     dependencies:
@@ -8371,9 +8373,9 @@ Lockfile:
       source-list-map "^2.0.0"
       source-map "~0.6.1"
   
-  webpack@4.0.0:
-    version "4.0.0"
-    resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.0.0.tgz#423c2d27cb050e7655c6ea25ce27bfcbfcb56731"
+  webpack@4.4.1:
+    version "4.4.1"
+    resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.4.1.tgz#b0105789890c28bfce9f392623ef5850254328a4"
     dependencies:
       acorn "^5.0.0"
       acorn-dynamic-import "^3.0.0"
@@ -8391,8 +8393,8 @@ Lockfile:
       node-libs-browser "^2.0.0"
       schema-utils "^0.4.2"
       tapable "^1.0.0"
-      uglifyjs-webpack-plugin "^1.1.1"
-      watchpack "^1.4.0"
+      uglifyjs-webpack-plugin "^1.2.4"
+      watchpack "^1.5.0"
       webpack-sources "^1.0.1"
   
   websocket-driver@>=0.5.1:
@@ -8666,10 +8668,17 @@ Lockfile:
       yeoman-environment "^2.0.5"
 
 Trace: 
-  Error: `install` has been replaced with `add` to add new dependencies. Run "yarn add webpack@4.4.1" instead.
-      at new MessageError (C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
-      at Object.<anonymous> (C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:21987:13)
-      at Generator.next (<anonymous>)
-      at step (C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:98:30)
-      at C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:109:13
-      at <anonymous>
+  Error: Command failed.
+  Exit code: 1
+  Command: C:\WINDOWS\system32\cmd.exe
+  Arguments: /d /s /c webpack-dev-server --mode development
+  Directory: C:\Users\garimjai\SelfLearning\udemy-react-2nd-edition\ExpensifyApp
+  Output:
+  
+      at ProcessTermError.MessageError (C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
+      at new ProcessTermError (C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
+      at ChildProcess.<anonymous> (C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
+      at emitTwo (events.js:126:13)
+      at ChildProcess.emit (events.js:214:7)
+      at maybeClose (internal/child_process.js:925:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
