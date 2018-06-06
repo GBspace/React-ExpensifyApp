@@ -5,12 +5,13 @@ import expensesTotal from '../selectors/expenses-total';
 
 export class ExpenseSummary extends React.Component{
     render(){
+        const expenseLabel = this.props.expenseCount === 1 ? 'expense' : 'expenses';
         return(
             <div>
-                <h1>ExpenseSummary as of now</h1>
-                {this.props.expenseCount}
-                <p/>
-                {this.props.expenseTotal}
+            
+                <h1>Viewing {this.props.expenseCount} {expenseLabel} totalling to {this.props.expenseTotal} </h1>
+                
+                
             </div>
         );
     };
@@ -19,10 +20,10 @@ export class ExpenseSummary extends React.Component{
 
 
 const mapStateToProps = (state)=>{
-    let expenses = selectExpenses(state.expense,state.filters);
+    let visibleExpenses = selectExpenses(state.expense,state.filters);
     return{
-        expenseCount: selectExpenses(state.expense,state.filters).length,
-        expenseTotal: expensesTotal(expenses)
+        expenseCount: visibleExpenses.length,
+        expenseTotal: expensesTotal(visibleExpenses)
     };
 };
 
