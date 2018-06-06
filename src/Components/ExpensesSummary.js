@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import selectExpenses from '../selectors/expenses';
 import expensesTotal from '../selectors/expenses-total';
 
-class ExpenseSummary extends React.Component{
+export class ExpenseSummary extends React.Component{
     render(){
         return(
             <div>
