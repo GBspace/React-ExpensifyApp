@@ -50,3 +50,10 @@ type: 'EDIT_EXPENSE',
 id,
 updates
 });
+
+export const setExpenses = (expenses)=>({
+    type: 'SET_EXPENSES',
+    expenses
+});
+
+// export const startSetExpenses;
