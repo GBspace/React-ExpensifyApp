@@ -56,4 +56,35 @@ export const setExpenses = (expenses)=>({
     expenses
 });
 
-// export const startSetExpenses;
+
+
+// export const startSetExpense = ()=>{
+//     return(dispatch)=>{
+//         const expenses = [];
+//         database.ref('expenses').once('value',(snapshot)=>{
+//             snapshot.forEach((childSnapshot)=>{
+//                 expenses.push({
+//                     id: childSnapshot.key,
+//                     ...childSnapshot.val()
+//                 });
+//             });
+//         });
+//         return dispatch(setExpenses(expenses));
+
+//     };
+// };
+
+export const startSetExpense = ()=>{
+    return (dispatch)=>{
+        return database.ref('expenses').once('value').then((snapshot)=>{
+            const expenses = [];
+            snapshot.forEach((childSnapshot)=>{
+                expenses.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+            dispatch(setExpenses(expenses));
+        });
+    };
+};

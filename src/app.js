@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import './styles/style.scss';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import {addExpense} from './actions/expenses';
+import {startSetExpense} from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 import 'react-dates/lib/css/_datepicker.css';
@@ -14,26 +14,26 @@ import './firebase/firebase';
 
 
 const store = configureStore();
-store.dispatch(addExpense({
-    desc: 'Water bill',
-    note : 'May' , 
-    amount : 300, 
-    createAt : 2000
-}));
+// store.dispatch(addExpense({
+//     desc: 'Water bill',
+//     note : 'May' , 
+//     amount : 300, 
+//     createAt : 2000
+// }));
 
-store.dispatch(addExpense({
-    desc: 'Grocery',
-    note : 'May' , 
-    amount : 400, 
-    createAt : 21000
-}));
+// store.dispatch(addExpense({
+//     desc: 'Grocery',
+//     note : 'May' , 
+//     amount : 400, 
+//     createAt : 21000
+// }));
 
-store.dispatch(addExpense({
-    desc: 'gas Bill',
-    note : 'May' , 
-    amount : 650, 
-    createAt : 20000
-}));
+// store.dispatch(addExpense({
+//     desc: 'gas Bill',
+//     note : 'May' , 
+//     amount : 650, 
+//     createAt : 20000
+// }));
 // store.dispatch(setTextFilter('Bill'));
 // console.log(store.getState());
 // store.dispatch(setTextFilter('Water'));
@@ -53,4 +53,8 @@ const jsx = (
     
 );
 
-ReactDOM.render(jsx,document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>,document.getElementById('app'));
+store.dispatch(startSetExpense()).then(()=>{
+    ReactDOM.render(jsx,document.getElementById('app'));
+});
+

@@ -1,4 +1,4 @@
-import {addExpense,removeExpense,editExpense,startAddExpense,setExpenses} from '../../actions/expenses';
+import {addExpense,removeExpense,editExpense,startAddExpense,setExpenses,startSetExpense} from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -69,7 +69,7 @@ test('should add expense to databse and store',(done)=>{
 });
 
 
-test('should add expense with defaults to databse and store',()=>{
+test('should add expense with defaults to database and store',()=>{
     const store = createMockStore({}); //intial state passed 
     const expenseDefault = {
         desc: '',
@@ -101,4 +101,18 @@ test('should setup set expenses action object with data' , ()=>{
         type: 'SET_EXPENSES',
         expenses
     });
+});
+
+test('should fetch expenses from firebase',(done)=>{
+    const store = createMockStore({});
+    store.dispatch(startSetExpense()).then(()=>{
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: 'SET_EXPENSES',
+            expenses
+        });
+        
+        
+    });
+
 });
