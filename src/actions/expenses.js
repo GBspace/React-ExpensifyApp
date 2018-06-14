@@ -57,23 +57,6 @@ export const setExpenses = (expenses)=>({
 });
 
 
-
-// export const startSetExpense = ()=>{
-//     return(dispatch)=>{
-//         const expenses = [];
-//         database.ref('expenses').once('value',(snapshot)=>{
-//             snapshot.forEach((childSnapshot)=>{
-//                 expenses.push({
-//                     id: childSnapshot.key,
-//                     ...childSnapshot.val()
-//                 });
-//             });
-//         });
-//         return dispatch(setExpenses(expenses));
-
-//     };
-// };
-
 export const startSetExpense = ()=>{
     return (dispatch)=>{
         return database.ref('expenses').once('value').then((snapshot)=>{
@@ -88,3 +71,12 @@ export const startSetExpense = ()=>{
         });
     };
 };
+
+export const startRemoveExpense = ({id} = {})=>{
+    return(dispatch)=>{
+        return database.ref(`expenses/${id}`).set(null).then(()=>{
+            dispatch(removeExpense({id}));
+        });
+    };
+};
+
