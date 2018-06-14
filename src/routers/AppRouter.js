@@ -6,6 +6,7 @@ import EditExpensePage from '../Components/EditExpensePage';
 import HelpPage from '../Components/HelpPage';
 import NotFoundPage from '../Components/NotFoundPage';
 import Header from '../Components/Header';
+import LoginPage from '../Components/LoginPage';
 
 //props will pass down only to component value to route
 const AppRouter = ()=>(
@@ -13,7 +14,8 @@ const AppRouter = ()=>(
     <div>
         <Header />
         <Switch> 
-             <Route path= "/" component={ExpenseDashboardPage} exact = {true}/>
+             <Route path= "/" component={LoginPage} exact = {true}/>
+             <Route path= "/dashboard" component= {ExpenseDashboardPage} />
              <Route path= "/create" component={AddExpensePage} />
              <Route path= "/edit/:id" component = {EditExpensePage} />
              <Route path= "/help" component = {HelpPage}/>
