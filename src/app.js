@@ -3,17 +3,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './styles/style.scss';
-import AppRouter from './routers/AppRouter';
+import AppRouter, {history} from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import {startSetExpense} from './actions/expenses';
-import { setTextFilter } from './actions/filters';
+import { login, logout } from './actions/auth';
 import getVisibleExpenses from './selectors/expenses';
 import 'react-dates/lib/css/_datepicker.css';
-import {firebase} from './firebase/firebase';
-
-
+import { firebase } from './firebase/firebase';
 
 const store = configureStore();
+
 // store.dispatch(addExpense({
 //     desc: 'Water bill',
 //     note : 'May' , 
@@ -52,17 +51,29 @@ const jsx = (
     </Provider>
     
 );
+let hasRendered = false;
+
+const renderApp = ()=>{
+    if(!hasRendered) {
+        ReactDOM.render(jsx,document.getElementById('app'));
+        hasRendered = true;
+    }
+};
 
 ReactDOM.render(<p>Loading...</p>,document.getElementById('app'));
-store.dispatch(startSetExpense()).then(()=>{
-    ReactDOM.render(jsx,document.getElementById('app'));
-});
-
 firebase.auth().onAuthStateChanged((user)=>{
     if(user) {
-        console.log("Logged In");
+        store.dispatch(login(user.uid));
+        store.dispatch(startSetExpense()).then(()=>{
+            renderApp();
+            if(history.location.pathname === '/'){
+                history.push('/dashboard');
+            }
+        });
     }else{
-        console.log("Logged Out");
+        store.dispatch(logout());
+        renderApp();
+        history.push("/");
     }
 });
 
