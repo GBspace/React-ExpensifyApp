@@ -7,15 +7,19 @@ import numeral from 'numeral';
 
 export const ExpenseListItem = ( {id,desc,amount,createAt}) => {
     return (
-        <div>
-            <Link to={`/edit/${id}`}> Edit </Link>  
-            <h3>{desc} </h3>
-            <p>
-                 {numeral(amount).format('$0,0.00')} 
-                 -- 
-                 {moment(createAt).format('MMMM Do YYYY')}
-            </p>
-        </div>
+       
+        <Link className="list-item" to={`/edit/${id}`}> 
+            <div>
+                <h3 className="list-item__title">{desc} </h3>
+                <span className="list-item__subtitle">{moment(createAt).format('MMMM Do YYYY')}</span>
+            </div> 
+            <h3 className="list-item__data">
+                {numeral(amount).format('$0,0.00')} 
+            </h3>               
+        </Link>  
+            
+            
+       
     );
 };
 

@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run dev server
+  C:\Program Files\nodejs\node.exe C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run dev-derver
 
 PATH: 
-  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\WebEx\Productivity Tools;%programfiles(x86)%\Cisco\OSD-ShellApplications;C:\Program Files (x86)\PuTTY\;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Sennheiser\SoftphoneSDK\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\garimjai\AppData\Local\Microsoft\WindowsApps;C:\Users\garimjai\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Users\garimjai\AppData\Local\GitHubDesktop\bin;C:\Program Files\heroku\bin
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\WebEx\Productivity Tools;C:\Program Files (x86)\Cisco\OSD-ShellApplications;C:\Program Files (x86)\PuTTY\;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Sennheiser\SoftphoneSDK\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\garimjai\AppData\Local\Microsoft\WindowsApps;C:\Users\garimjai\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Users\garimjai\AppData\Local\GitHubDesktop\bin;C:\Program Files\heroku\bin
 
 Yarn version: 
   1.5.1
@@ -33,12 +33,14 @@ npm manifest:
       "babel-core": "^6.26.3",
       "babel-loader": "^7.1.4",
       "babel-plugin-transform-object-rest-spread": "^6.26.0",
+      "babel-polyfill": "^6.26.0",
       "babel-preset-env": "^1.5.2",
       "babel-preset-react": "^6.24.1",
       "css-loader": "^0.28.11",
       "express": "^4.16.3",
       "extract-text-webpack-plugin": "^3.0.2",
       "firebase": "^5.0.4",
+      "history": "^4.7.2",
       "mini-css-extract-plugin": "^0.4.0",
       "moment": "2.22.1",
       "node-sass": "^4.9.0",
@@ -8905,7 +8907,7 @@ Lockfile:
       yeoman-environment "^2.0.5"
 
 Trace: 
-  Error: Command "dev" not found.
+  Error: Command "dev-derver" not found. Did you mean "dev-server"?
       at new MessageError (C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
       at C:\Users\garimjai\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:87307:17
       at Generator.next (<anonymous>)
